@@ -1,0 +1,61 @@
+:root {
+  --bg: #ffffff;
+  --text: #1f1f28;
+  --accent: #7c3aed;
+  --accent-bg: rgba(124, 58, 237, 0.12);
+  --accent-border: rgba(124, 58, 237, 0.35);
+  font-family: system-ui, 'Segoe UI', sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  min-height: 100vh;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+#app {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+#center {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+  width: min(100%, 420px);
+}
+
+.counter {
+  font-size: 16px;
+  padding: 12px 20px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.counter:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-1px);
+}
+
+.counter:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
