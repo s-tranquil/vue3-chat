@@ -9,7 +9,7 @@ const themeOverrides: GlobalThemeOverrides = {
         primaryColorHover: "#6d28d9",
         primaryColorPressed: "#5b21b6",
         primaryColorSuppl: "#8b5cf6",
-        borderRadiusMedium: "16px",
+        borderRadius: "16px",
         borderRadiusSmall: "12px",
     },
     Card: {
