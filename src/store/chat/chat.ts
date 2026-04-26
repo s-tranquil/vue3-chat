@@ -75,5 +75,11 @@ export const useChatStore = defineStore("chat", {
             });
             return id;
         },
+        toggleFavorite(chatId: string) {
+            const chat = this.chats.find(item => item.id === chatId);
+            if (chat) {
+                chat.isFavorite = !chat.isFavorite;
+            }
+        },
     },
 });

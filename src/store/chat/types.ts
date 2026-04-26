@@ -14,4 +14,5 @@ export type ChatItem = {
     id: string,
     title: string,
     messages: ChatMessage[],
+    isFavorite?: boolean,
 };

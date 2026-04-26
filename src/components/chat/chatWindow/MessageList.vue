@@ -29,7 +29,7 @@ watch(
 
 <template>
     <div ref="parentRef" class="message-list">
-        <NEmpty v-if="count === 0" description="No messages yet" style="padding: 40px 0;" />
+        <NEmpty v-if="count === 0" class="empty" description="No messages yet" />
         <div
             v-else
             :style="{ height: `${virtualizer.getTotalSize()}px`, position: 'relative' }"
@@ -61,5 +61,9 @@ watch(
 <style scoped>
 .message-list {
     overflow-y: auto;
+}
+
+.empty {
+    padding: 40px 0;
 }
 </style>

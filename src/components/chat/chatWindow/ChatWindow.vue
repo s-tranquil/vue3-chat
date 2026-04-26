@@ -16,7 +16,7 @@ const activeChat = computed(() => chatStore.getChatById(chatId.value));
 <template>
     <NCard :title="activeChat?.title ?? 'Chat'">
         <template #header-extra>
-            <NText depth="3" style="font-size: 13px;">Chat ID: {{ chatId }}</NText>
+            <NText depth="3" class="chat-id">Chat ID: {{ chatId }}</NText>
         </template>
         <div class="chat-body">
             <MessageList :messages="activeChat?.messages ?? []" />
@@ -24,3 +24,9 @@ const activeChat = computed(() => chatStore.getChatById(chatId.value));
         </div>
     </NCard>
 </template>
+
+<style scoped>
+.chat-id {
+    font-size: 13px;
+}
+</style>
