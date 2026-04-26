@@ -3,7 +3,7 @@ import { computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { NCard, NMenu } from "naive-ui";
 import type { MenuOption } from "naive-ui";
-import { useChatStore } from "../stores/chat";
+import { useChatStore } from "../stores/chat/chat";
 
 const DEFAULT_CHAT_ID = "1";
 

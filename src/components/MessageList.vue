@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, nextTick } from "vue";
 import { NScrollbar, NEmpty } from "naive-ui";
-import { type ChatMessage, SenderType } from "../stores/chat";
+import { type ChatMessage, SenderType } from "../stores/chat/types";
 
 const props = defineProps<{ messages: ChatMessage[] }>();
 

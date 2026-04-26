@@ -1,33 +1,15 @@
 <script setup lang="ts">
 import { ref, nextTick } from "vue";
 import { NInput, NButton } from "naive-ui";
-import { useChatStore, SenderType } from "../stores/chat";
+import { useChat } from "../composables/useChat";
 
 const props = defineProps<{ chatId: string }>();
 
-const chatStore = useChatStore();
 const inputRef = ref<InstanceType<typeof NInput>>();
-const text = ref("");
-const isSending = ref(false);
+const { text, isSending, send } = useChat(() => props.chatId);
 
-async function send() {
-    const trimmed = text.value.trim();
-    if (!trimmed || isSending.value) return;
-
-    isSending.value = true;
-    const draft = trimmed;
-    text.value = "";
-
-    await new Promise<void>(resolve => setTimeout(resolve, 200 + Math.random() * 400));
-
-    chatStore.addMessage(props.chatId, {
-        id: crypto.randomUUID(),
-        sender: SenderType.User,
-        text: draft,
-        timestamp: new Date().toISOString(),
-    });
-
-    isSending.value = false;
+async function handleSend() {
+    await send();
     await nextTick();
     inputRef.value?.focus();
 }
@@ -35,7 +17,7 @@ async function send() {
 function onKeydown(e: KeyboardEvent) {
     if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();
-        send();
+        handleSend();
     }
 }
 </script>
@@ -55,7 +37,7 @@ function onKeydown(e: KeyboardEvent) {
             type="primary"
             :disabled="!text.trim() || isSending"
             :loading="isSending"
-            @click="send"
+            @click="handleSend"
         >
             Send
         </NButton>

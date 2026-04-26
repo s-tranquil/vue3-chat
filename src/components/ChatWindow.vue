@@ -2,7 +2,7 @@
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { NCard, NText } from "naive-ui";
-import { useChatStore } from "../stores/chat";
+import { useChatStore } from "../stores/chat/chat";
 import MessageList from "./MessageList.vue";
 import MessageInput from "./MessageInput.vue";
 
