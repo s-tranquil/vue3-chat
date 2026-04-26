@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const count = ref(0)
+import Sidebar from "./Sidebar.vue";
+import ChatWindow from "./ChatWindow.vue";
 </script>
 
 <template>
-  <section id="center">
-    <button type="button" class="counter" @click="count++">
-      Count is {{ count }}
-    </button>
-  </section>
+    <div class="app-shell">
+        <Sidebar />
+        <ChatWindow />
+    </div>
 </template>
