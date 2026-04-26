@@ -66,5 +66,14 @@ export const useChatStore = defineStore("chat", {
                 chat.messages.push(message);
             }
         },
+        addChat(title: string): string {
+            const id = crypto.randomUUID();
+            this.chats.push({
+                id,
+                title,
+                messages: [createMessage(SenderType.Bot, `Welcome to ${title}!`)],
+            });
+            return id;
+        },
     },
 });

@@ -1,9 +1,9 @@
-import { ref } from "vue";
+import { ref, onUnmounted } from "vue";
 import { getRandomDelay } from "../utils/getRandomDelay";
 import { pickRandom } from "../utils/pickRandom";
-import { useChatStore } from "../stores/chat/chat";
-import { createMessage } from "../stores/chat/utils/createMessage";
-import { SenderType } from "../stores/chat/types";
+import { useChatStore } from "../store/chat/chat";
+import { createMessage } from "../store/chat/utils/createMessage";
+import { SenderType } from "../store/chat/types";
 
 const BOT_REPLIES = [
     "Got it! Let me look into that.",
@@ -23,10 +23,19 @@ export function useChat(chatIdGetter: () => string) {
     const chatStore = useChatStore();
     const text = ref("");
     const isSending = ref(false);
+    let replyTimer: ReturnType<typeof setTimeout> | null = null;
+
+    onUnmounted(() => {
+        if (replyTimer !== null) {
+            clearTimeout(replyTimer);
+        }
+    });
 
     async function send() {
         const trimmed = text.value.trim();
-        if (!trimmed || isSending.value) return;
+        if (!trimmed || isSending.value) {
+            return;
+        }
 
         const chatId = chatIdGetter();
         isSending.value = true;
@@ -41,8 +50,9 @@ export function useChat(chatIdGetter: () => string) {
 
         isSending.value = false;
 
-        setTimeout(() => {
+        replyTimer = setTimeout(() => {
             chatStore.addMessage(chatId, createMessage(SenderType.Bot, pickRandom(BOT_REPLIES)));
+            replyTimer = null;
         }, getRandomDelay(REPLY_DELAY_MIN, REPLY_DELAY_MAX));
     }
 

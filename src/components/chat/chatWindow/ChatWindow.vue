@@ -2,13 +2,14 @@
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { NCard, NText } from "naive-ui";
-import { useChatStore } from "../stores/chat/chat";
+import { useChatStore } from "../../../store/chat/chat";
 import MessageList from "./MessageList.vue";
 import MessageInput from "./MessageInput.vue";
+import { DEFAULT_CHAT_ID } from "../../../constants";
 
 const route = useRoute();
 const chatStore = useChatStore();
-const chatId = computed(() => String(route.params.id || "1"));
+const chatId = computed(() => String(route.params.id || DEFAULT_CHAT_ID));
 const activeChat = computed(() => chatStore.getChatById(chatId.value));
 </script>
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { NConfigProvider, NGlobalStyle } from "naive-ui";
 import type { GlobalThemeOverrides } from "naive-ui";
-import Chat from "./components/Chat.vue";
+import Chat from "./components/chat/Chat.vue";
 
 const themeOverrides: GlobalThemeOverrides = {
     common: {

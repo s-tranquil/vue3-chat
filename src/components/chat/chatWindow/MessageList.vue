@@ -2,7 +2,7 @@
 import { ref, computed, watch, nextTick } from "vue";
 import { useVirtualizer } from "@tanstack/vue-virtual";
 import { NEmpty } from "naive-ui";
-import { type ChatMessage, SenderType } from "../stores/chat/types";
+import { type ChatMessage, SenderType } from "../../../store/chat/types";
 
 const props = defineProps<{ messages: ChatMessage[] }>();
 

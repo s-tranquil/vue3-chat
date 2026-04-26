@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Chat from "../components/Chat.vue";
+import Chat from "../components/chat/Chat.vue";
+import { DEFAULT_CHAT_ID } from "../constants";
 
 const routes = [
-    { path: "/", redirect: "/chat/1" },
+    { path: "/", redirect: `/chat/${DEFAULT_CHAT_ID}` },
     { path: "/chat/:id", component: Chat },
 ];
 

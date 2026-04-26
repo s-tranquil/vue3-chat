@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, nextTick } from "vue";
 import { NInput, NButton } from "naive-ui";
-import { useChat } from "../composables/useChat";
+import { useChat } from "../../../composables/useChat";
 
 const props = defineProps<{ chatId: string }>();
 
@@ -14,10 +14,10 @@ async function handleSend() {
     inputRef.value?.focus();
 }
 
-function onKeydown(e: KeyboardEvent) {
+async function onKeydown(e: KeyboardEvent) {
     if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();
-        handleSend();
+        await handleSend();
     }
 }
 </script>
